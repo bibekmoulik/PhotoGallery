@@ -1,9 +1,9 @@
 var photoIndex = 5;
-var projectPath = "";
+var projectPath = "https://bibekmoulik.github.io/PhotoGallery/";
 
 function showDescription()
 {
-	var imagePath = projectPath + "\\" + document.getElementById("largeScreen").src;
+	var imagePath = projectPath + document.getElementById("largeScreen").src;
 	var file = readFile(imagePath);
 	if (file && file.name) 
 	{
