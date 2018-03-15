@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Bibek's Gallery</title>
+		<link rel="Shortcut Icon" href="images/logo.png" type="image/x-icon"/>
+
+		<!-- for-mobile-apps -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+		<script type="application/x-javascript">
+			addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+			function hideURLbar(){ window.scrollTo(0,1); }
+		</script>
+		<link href="css/w3.css" rel="stylesheet" type="text/css" media="all" />
+		<script type="text/javascript" src="js/exif.js"/>
+		<script type="text/javascript" src="js/custom.js"/>
+	</head>
+		
+	<body onload="funcLoad()">
+		<!--input type="file" id="invisibleFile" file="fileSource" style="display:block" onchange="showDescription()"/-->
+		<div id="container"/>
+		
+		<div id="modal01" class="w3-modal">
+			<div>
+				<span class="w3-title w3-blue-grey w3-xlarge w3-display-topleft" id="descriptionSpan">a</span>
+				<span class="w3-button w3-blue-grey w3-hover-red w3-xlarge w3-display-topright" onclick="closeScreen()">&times;</span>
+			</div>
+			<div class="w3-modal-content w3-animate-zoom">
+				<img id="largeScreen" style="width:100%" onchange="showDescription()"/>
+				<button class="w3-button w3-opacity-max w3-display-left" onclick="plusDivs(1)">&#10094;</button>
+				<button class="w3-button w3-opacity-max w3-display-right" onclick="plusDivs(-1)">&#10095;</button>
+			</div>
+		</div>
+	</body>
+</html>
