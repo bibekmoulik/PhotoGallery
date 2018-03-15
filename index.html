@@ -32,5 +32,13 @@
 				<button class="w3-button w3-opacity-max w3-display-right" onclick="plusDivs(-1)">&#10095;</button>
 			</div>
 		</div>
+		<script type="text/javascript">
+		document.getElementById("largeScreen").onclick = function() {
+			EXIF.getData(this, function() {
+				//alert(EXIF.pretty(this));
+				document.getElementById("descriptionSpan").innerText = EXIF.getTag(this, "ImageDescription");
+			});
+		}
+		</script>
 	</body>
 </html>
