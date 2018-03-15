@@ -35,7 +35,7 @@
 		<script type="text/javascript">
 		document.getElementById("largeScreen").onclick = function() {
 			EXIF.getData(this, function() {
-				//alert(EXIF.pretty(this));
+				alert(EXIF.pretty(this));
 				document.getElementById("descriptionSpan").innerText = EXIF.getTag(this, "ImageDescription");
 			});
 		}
