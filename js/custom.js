@@ -1,17 +1,35 @@
 var photoIndex = 5;
-var projectPath = "https://bibekmoulik.github.io/PhotoGallery/";
+var projectPath = "https://bibekmoulik.github.io/PhotoGallery/images/";
 
 function showDescription()
 {
-	var imagePath = projectPath + document.getElementById("largeScreen").src;
-	var file = readFile(imagePath);
-	if (file && file.name) 
+	EXIF.getData(this, function() {
+		alert(EXIF.pretty(this));
+	});
+	
+	/*var imagePath = projectPath + document.getElementById("largeScreen").src.split('/').pop();
+	var rawFile = createXMLHttpObject() ;
+	rawFile.open("GET",imagePath,true);
+	rawFile.onreadystatechange = function ()
 	{
-		EXIF.getData(file, function(){
-			//document.getElementById("descriptionSpan").innerText = EXIF.getTag(file, "ImageDescription");
-			alert(EXIF.getTag(file, "ImageDescription"));
-		});
+		if(rawFile.readyState == 4)
+		{
+			if(rawFile.status == 200 || rawFile.status == 0)
+			{
+				var file = rawFile.response;
+				//alert(allText);
+				if (file && file.name) 
+				{
+					EXIF.getData(file, function(){
+						//document.getElementById("descriptionSpan").innerText = EXIF.getTag(file, "ImageDescription");
+						alert(EXIF.getTag(file, "ImageDescription"));
+					});
+				}
+				//return rawFile;
+			}
+		}
 	}
+	rawFile.send(null);*/
 }
 
 function funcLoad()
@@ -156,19 +174,10 @@ function createXMLHttpObject()
 
 function readFile(file)
 {
-	var rawFile = createXMLHttpObject() ;
-	rawFile.open("GET",file,true);
-	rawFile.onreadystatechange = function ()
-	{
-		if(rawFile.readyState == 4)
-		{
-			if(rawFile.status == 200 || rawFile.status == 0)
-			{
-				var allText = rawFile.responseText;
-				//alert(allText);
-			}
-		}
-	}
-	rawFile.send(null);
-	return rawFile;
+	
+}
+
+function getFileName(path)
+{
+	return path.split('/').pop();
 }
