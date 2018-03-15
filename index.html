@@ -34,11 +34,12 @@
 		</div>
 		<script type="text/javascript">
 		document.getElementById("largeScreen").onclick = function() {
-			/*EXIF.getData(this, function() {
+			EXIF.getData(this, function() {
 				//alert(EXIF.pretty(this));
-				document.getElementById("descriptionSpan").innerText = EXIF.getTag(this, "ImageDescription");
-			});*/
-			document.getElementById("descriptionSpan").innerText = this.iptcdata.caption;
+				//document.getElementById("descriptionSpan").innerText = EXIF.getTag(this, "ImageDescription");
+				document.getElementById("descriptionSpan").innerText = this[iptcdata].caption;
+			});
+			//document.getElementById("descriptionSpan").innerText = this.iptcdata.caption;
 		}
 		</script>
 	</body>
