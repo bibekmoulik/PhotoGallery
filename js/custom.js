@@ -1,13 +1,19 @@
 var photoIndex = 5;
-var projectPath = "https://bibekmoulik.github.io/PhotoGallery/images/";
+//var projectPath = "https://bibekmoulik.github.io/PhotoGallery/images/";
 
-function showDescription()
+document.getElementById("largeScreen").onclick = function() {
+	EXIF.getData(this, function() {
+		alert(EXIF.pretty(this));
+		document.getElementById("descriptionSpan").innerText = EXIF.getTag(this, "ImageDescription");
+	});
+}
+/*function showDescription()
 {
 	EXIF.getData(this, function() {
 		alert(EXIF.pretty(this));
 	});
 	
-	/*var imagePath = projectPath + document.getElementById("largeScreen").src.split('/').pop();
+	var imagePath = projectPath + document.getElementById("largeScreen").src.split('/').pop();
 	var rawFile = createXMLHttpObject() ;
 	rawFile.open("GET",imagePath,true);
 	rawFile.onreadystatechange = function ()
@@ -29,9 +35,9 @@ function showDescription()
 			}
 		}
 	}
-	rawFile.send(null);*/
+	rawFile.send(null);
 }
-
+*/
 function funcLoad()
 {
 	container = document.getElementById("container");
