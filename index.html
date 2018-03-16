@@ -3,8 +3,7 @@
 	<head>
 		<title>Bibek's Gallery</title>
 		<link rel="Shortcut Icon" href="images/logo.png" type="image/x-icon"/>
-
-		<!-- for-mobile-apps -->
+		
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
@@ -18,29 +17,18 @@
 	</head>
 		
 	<body onload="funcLoad()">
-		<!--input type="file" id="invisibleFile" file="fileSource" style="display:block" onchange="showDescription()"/-->
 		<div id="container"/>
 		
 		<div id="modal01" class="w3-modal">
 			<div>
-				<span class="w3-title w3-blue-grey w3-xlarge w3-display-topleft" id="descriptionSpan">a</span>
-				<span class="w3-button w3-blue-grey w3-hover-red w3-xlarge w3-display-topright" onclick="closeScreen()">&times;</span>
+				<span class="w3-title w3-blue-grey w3-header w3-display-topleft" id="descriptionSpan">a</span>
+				<span class="w3-button w3-blue-grey w3-hover-red w3-header w3-display-topright" onclick="closeScreen()">&times;</span>
 			</div>
-			<div class="w3-modal-content w3-animate-zoom">
-				<img id="largeScreen" style="width:100%"></img>
+			<div id="displayBoard" class="w3-modal-content w3-animate-zoom">
 				<button class="w3-button w3-opacity-max w3-display-left" onclick="plusDivs(1)">&#10094;</button>
 				<button class="w3-button w3-opacity-max w3-display-right" onclick="plusDivs(-1)">&#10095;</button>
+				<img id="largeScreen" class="w3-largeScreen"></img>
 			</div>
 		</div>
-		<script type="text/javascript">
-		document.getElementById("largeScreen").onclick = function() {
-			EXIF.getData(this, function() {
-				//alert(EXIF.pretty(this));
-				//document.getElementById("descriptionSpan").innerText = EXIF.getTag(this, "ImageDescription");
-				document.getElementById("descriptionSpan").innerText = this.iptcdata.caption;
-			});
-			//document.getElementById("descriptionSpan").innerText = this.iptcdata.caption;
-		}
-		</script>
 	</body>
 </html>
