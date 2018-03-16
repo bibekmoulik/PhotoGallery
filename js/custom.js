@@ -1,4 +1,5 @@
 var photoIndex = 5;
+var imagePath = "https://bibekmoulik.github.io/PhotoGallery/images/";
 
 function funcLoad()
 {
@@ -7,7 +8,7 @@ function funcLoad()
 	while(parseInt(photoIndex) > 0)
 	{
 		var id = pad(photoIndex,10);
-		var srcPath = "images/" + id + ".jpg";
+		var srcPath = imagePath + id + ".jpg";
 		var image = document.createElement("img");
 		image.name = "photo";
 		image.id = id;
@@ -28,8 +29,8 @@ function pad(str,max)
 function zoomIn(photoSrc,slideIndex)
 {
 	document.getElementById("modal01").style.display = "block";
-	document.getElementById("largeScreen").src = photoSrc;
 	photoIndex = parseInt(slideIndex);
+	setImage(photoSrc);
 }
 
 function plusDivs(n)
@@ -37,16 +38,16 @@ function plusDivs(n)
 	photoIndex = photoIndex + n;
 	var photos = document.getElementsByName("photo");
 	
-	if (photoIndex > photos.length)
-	{
+	if (photoIndex > photos.length){
 		photoIndex = 1;
 	}
-	if (photoIndex < 1)
-	{
+	
+	if (photoIndex < 1){
 		photoIndex = photos.length
 	}
+	
 	var arrIndex = photos.length - photoIndex;
-	document.getElementById("largeScreen").src = photos[arrIndex].src;
+	setImage(photos[arrIndex].src);
 }
 
 function closeScreen()
@@ -54,88 +55,20 @@ function closeScreen()
 	document.getElementById("modal01").style.display = "none";
 }
 
-function createXMLHttpObject()
+function setImage(sourcePath)
 {
-	var xmlhttp=false;
-	/* running locally on IE5.5, IE6, IE7 */
-	if(location.protocol=="file:")
-	{
-		if(!xmlhttp)
-		{
-			try
-			{
-				xmlhttp=new ActiveXObject("MSXML2.XMLHTTP");
-			}
-			catch(e)
-			{
-				xmlhttp=false;
-			}
-		}
-		if(!xmlhttp)
-		{
-			try
-			{
-				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-			}
-			catch(e)
-			{
-				xmlhttp=false;
-			}
-		}
-	}
-	/* IE7, Firefox, Safari, Opera...  */
-	if(!xmlhttp)
-	{
-		try
-		{
-			xmlhttp=new XMLHttpRequest();
-		}
-		catch(e)
-		{
-			xmlhttp=false;
-		}
-	}
-	/* IE6 */
-	if(typeof ActiveXObject != "undefined")
-	{
-		if(!xmlhttp)
-		{
-			try
-			{
-				xmlhttp=new ActiveXObject("MSXML2.XMLHTTP");
-			}
-			catch(e)
-			{
-				xmlhttp=false;
-			}
-		}
-		if(!xmlhttp)
-		{
-			try
-			{
-				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-			}
-			catch(e)
-			{
-				xmlhttp=false;
-			}
-		}
-	}
-	/* IceBrowser */
-	if(!xmlhttp)
-	{
-		try
-		{
-			xmlhttp=createRequest();
-		}
-		catch(e)
-		{
-			xmlhttp=false;
-		}
-	}
-	/*if(!xmlhttp)
-	{
-		alert("Your browser doesn't seem to support XMLHttpRequests.");
-	}*/
-	return xmlhttp ;
+	var displayBoard = document.getElementById("displayBoard");
+	displayBoard.removeChild(document.getElementById("largeScreen"));
+	
+	var image = document.createElement("img");
+	image.id = "largeScreen";
+	image.className = "w3-largeScreen";
+	image.src = sourcePath;
+	
+	displayBoard.appendChild(image);
+	
+	var ImgFile = document.getElementById("largeScreen");
+	EXIF.getData(ImgFile, function() {
+		document.getElementById("descriptionSpan").innerText = ImgFile.iptcdata.caption;
+	});
 }
