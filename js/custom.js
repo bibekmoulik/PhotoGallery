@@ -57,6 +57,7 @@ function closeScreen()
 
 function setImage(sourcePath)
 {
+	var cText = "-";
 	var displayBoard = document.getElementById("displayBoard");
 	displayBoard.removeChild(document.getElementById("largeScreen"));
 	
@@ -69,6 +70,7 @@ function setImage(sourcePath)
 	
 	var ImgFile = document.getElementById("largeScreen");
 	EXIF.getData(ImgFile, function() {
-		document.getElementById("descriptionSpan").innerText = ImgFile.iptcdata.caption;
+		cText = ImgFile.iptcdata.caption;
 	});
+	document.getElementById("descriptionSpan").innerText = cText;
 }
