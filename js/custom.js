@@ -1,5 +1,5 @@
 var photoIndex = 5;
-var imagePath = "https://bibekmoulik.github.io/PhotoGallery/images/";
+var imagePath = "https://bibekmoulik.github.io/gallery/images/";
 
 function funcLoad()
 {
@@ -57,8 +57,8 @@ function closeScreen()
 
 function setImage(sourcePath)
 {
-	document.getElementById("descriptionSpan").innerText = "-";
 	var displayBoard = document.getElementById("displayBoard");
+	displayBoard.style.display = "none";
 	displayBoard.removeChild(document.getElementById("largeScreen"));
 	
 	var image = document.createElement("img");
@@ -66,10 +66,24 @@ function setImage(sourcePath)
 	image.className = "w3-largeScreen";
 	image.src = sourcePath;
 	
+	document.getElementById("descriptionSpan").innerText = "";
 	displayBoard.appendChild(image);
 	
-	var ImgFile = document.getElementById("largeScreen");
-	EXIF.getData(ImgFile, function() {
-		document.getElementById("descriptionSpan").innerText = ImgFile.iptcdata.caption;
+	setImageDesc(image);
+	
+	displayBoard.style.display = "block";
+}
+
+function setImageDesc(image)
+{
+	document.getElementById("descriptionSpan").style.display = "none";
+	
+	EXIF.getData(image, function() {
+		var description = image.iptcdata.caption;
+		if (description && description != "")
+		{
+			document.getElementById("descriptionSpan").innerText = description;
+			document.getElementById("descriptionSpan").style.display = "block";
+		}
 	});
 }
