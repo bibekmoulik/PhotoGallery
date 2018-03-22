@@ -1,4 +1,4 @@
-var photoIndex = 5;
+var photoIndex = 21;
 var imagePath = "https://bibekmoulik.github.io/gallery/images/";
 
 function funcLoad()
