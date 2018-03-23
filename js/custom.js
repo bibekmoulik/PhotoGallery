@@ -18,18 +18,13 @@ function funcLoad()
 			
 			var image = document.createElement("img");
 			image.name = "photo";
+			image.className = "poloroid";
 			image.id = id;
 			image.src = srcPath;
 			image.setAttribute("onclick","zoomIn('" + id + "');");
+			
 			figure.appendChild(image);
-			
-			var figcaption = document.createElement("figcaption");
-			setFigCaption(image,figcaption);
-			figcaption.id = "Caption_" + id;
-			figure.appendChild(figcaption);
-			
-			figure.setAttribute("onmouseover","showFigCaption('" + id + "')");
-			figure.setAttribute("onmouseout","hideFigCaption('" + id + "')");
+			setFigCaption(image,figure);
 			
 			container.appendChild(figure);
 			photoIndex = photoIndex - 1;
@@ -105,30 +100,14 @@ function setImageDesc(image)
 	});
 }
 
-function setFigCaption(image,figcaption)
+function setFigCaption(image,figure)
 {
-	figcaption.style.display = "none";
-	
 	var description = "";
 	EXIF.getData(image, function() {
 		description = image.iptcdata.caption;
 		if (description && description != "")
 		{
-			figcaption.innerText = description;
+			figure.title = description;
 		}
 	});
-}
-
-function showFigCaption(id)
-{
-	document.getElementById("Caption_" + id).style.position = "absolute";
-	document.getElementById("Caption_" + id).style.display = "block";
-	document.getElementById("Fig_" + id).style.zIndex = "2";
-}
-
-function hideFigCaption(id)
-{
-	document.getElementById("Caption_" + id).style.position = "relative";
-	document.getElementById("Caption_" + id).style.display = "none";
-	document.getElementById("Fig_" + id).style.zIndex = "0";
 }
