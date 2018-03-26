@@ -69,20 +69,50 @@ function closeScreen()
 function setImage(sourcePath)
 {
 	var displayBoard = document.getElementById("displayBoard");
-	displayBoard.style.display = "none";
-	displayBoard.removeChild(document.getElementById("largeScreen"));
+	displayBoard.style.visibility = "hidden";
+	displayBoard.removeChild(document.getElementById("screenImg"));
 	
 	var image = document.createElement("img");
-	image.id = "largeScreen";
-	image.className = "w3-largeScreen";
+	image.id = "screenImg";
+	image.className = "w3-screenImg";
 	image.src = sourcePath;
+	
+	var displayBoard_ratio = displayBoard.offsetWidth/displayBoard.offsetHeight;
+	var image_ratio = image.width/image.height;
+	
+	if (image_ratio < displayBoard_ratio)
+	{
+		if (image.height > image.width)
+		{
+			image.style.height = "100%";
+			image.style.width = "auto";
+		}
+		else
+		{
+			image.style.width = "100%";
+			image.style.height = "auto";
+		}
+	}
+	else
+	{
+		if (image.height > image.width)
+		{
+			image.style.width = "100%";
+			image.style.height = "auto";
+		}
+		else
+		{
+			image.style.height = "100%";
+			image.style.width = "auto";
+		}
+	}
 	
 	document.getElementById("descriptionSpan").innerText = "";
 	displayBoard.appendChild(image);
 	
 	setImageDesc(image);
 	
-	displayBoard.style.display = "block";
+	displayBoard.style.visibility = "visible";
 }
 
 function setImageDesc(image)
