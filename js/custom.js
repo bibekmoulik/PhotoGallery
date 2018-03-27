@@ -141,3 +141,15 @@ function setFigCaption(image,figure)
 		}
 	});
 }
+
+document.addEventListener('keydown', function(event) {
+	if(document.getElementById("modal01").style.display == "block")
+	{
+		switch(event.key)
+		{
+			case "ArrowRight"	: plusDivs(-1); break;
+			case "ArrowLeft"	: plusDivs(1); break;
+			case "Escape"		: closeScreen(); break;
+		}
+	}
+}, false);
