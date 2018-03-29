@@ -1,5 +1,8 @@
 var photoIndex = 21;
+var initPhotoIndex = photoIndex;
 var imagePath = "https://bibekmoulik.github.io/gallery/images/";
+var zoomIndex = 1.0;
+var sliderTimer;
 
 function funcLoad()
 {
@@ -64,23 +67,85 @@ function plusDivs(n)
 function closeScreen()
 {
 	document.getElementById("modal01").style.display = "none";
+	document.getElementsByTagName("body")[0].style.overflow = "auto";
+}
+
+function startSlideShow()
+{
+	document.getElementById("pauseSlideShow").style.pointerEvents = "auto";
+	document.getElementById("resumeSlideShow").style.pointerEvents = "none";
+	document.getElementById("stopSlideShow").style.pointerEvents = "auto";
+	document.getElementById("restartSlideShow").style.pointerEvents = "auto";
+	
+	var screenImg = document.getElementById("screenImg");
+	document.getElementById("slideDesc").style.display = "none";
+	
+	var description = "";
+	EXIF.getData(screenImg, function() {
+		description = EXIF.getTitle(screenImg);
+		if (description && description != "")
+		{
+			document.getElementById("slideDesc").innerText = description;
+			document.getElementById("slideDesc").style.display = "block";
+		}
+	});
+	
+	var slideScreen = document.getElementById("slideScreen");
+	slideScreen.style.backgroundImage = "url('" + screenImg.src + "')";
+	slideScreen.style.display = "block";
+	plusDivs(-1);
+	sliderTimer = setTimeout(startSlideShow, 3000);
+}
+
+function stopSlideShow()
+{
+	document.getElementById("pauseSlideShow").style.pointerEvents = "auto";
+	document.getElementById("resumeSlideShow").style.pointerEvents = "auto";
+	document.getElementById("stopSlideShow").style.pointerEvents = "auto";
+	document.getElementById("restartSlideShow").style.pointerEvents = "auto";
+	
+	clearTimeout(sliderTimer);
+	plusDivs(1);
+	document.getElementById("slideScreen").style.display = "none";
+}
+
+function pauseSlideShow()
+{
+	document.getElementById("pauseSlideShow").style.pointerEvents = "none";
+	document.getElementById("resumeSlideShow").style.pointerEvents = "auto";
+	document.getElementById("stopSlideShow").style.pointerEvents = "auto";
+	document.getElementById("restartSlideShow").style.pointerEvents = "auto";
+	
+	clearTimeout(sliderTimer);
+}
+
+function resumeSlideShow()
+{
+	startSlideShow();
+}
+
+function restartSlideShow()
+{
+	stopSlideShow();
+	zoomIn(pad(initPhotoIndex,10));
+	startSlideShow();
 }
 
 function setImage(sourcePath)
 {
-	var displayBoard = document.getElementById("displayBoard");
-	displayBoard.style.visibility = "hidden";
-	displayBoard.removeChild(document.getElementById("screenImg"));
+	var screen = document.getElementById("screen");
+	screen.style.visibility = "hidden";
+	screen.removeChild(document.getElementById("screenImg"));
 	
 	var image = document.createElement("img");
 	image.id = "screenImg";
 	image.className = "w3-screenImg";
 	image.src = sourcePath;
 	
-	var displayBoard_ratio = displayBoard.offsetWidth/displayBoard.offsetHeight;
+	var screen_ratio = screen.offsetWidth/screen.offsetHeight;
 	var image_ratio = image.width/image.height;
 	
-	if (image_ratio < displayBoard_ratio)
+	if (image_ratio < screen_ratio)
 	{
 		if (image.height > image.width)
 		{
@@ -108,11 +173,13 @@ function setImage(sourcePath)
 	}
 	
 	document.getElementById("descriptionSpan").innerText = "";
-	displayBoard.appendChild(image);
+	screen.appendChild(image);
 	
 	setImageDesc(image);
 	
-	displayBoard.style.visibility = "visible";
+	screen.style.visibility = "visible";
+	
+	document.getElementsByTagName("body")[0].style.overflow =  "hidden";
 }
 
 function setImageDesc(image)
@@ -121,7 +188,7 @@ function setImageDesc(image)
 	
 	var description = "";
 	EXIF.getData(image, function() {
-		description = image.iptcdata.caption;
+		description = EXIF.pretty(image);
 		if (description && description != "")
 		{
 			document.getElementById("descriptionSpan").innerText = description;
@@ -134,7 +201,7 @@ function setFigCaption(image,figure)
 {
 	var description = "";
 	EXIF.getData(image, function() {
-		description = image.iptcdata.caption;
+		description = EXIF.getTitle(image);
 		if (description && description != "")
 		{
 			figure.title = description;
@@ -142,8 +209,30 @@ function setFigCaption(image,figure)
 	});
 }
 
+function togglePause()
+{
+	if (document.getElementById("resumeSlideShow").style.pointerEvents == "none")
+	{
+		pauseSlideShow();
+	}
+	else
+	{
+		resumeSlideShow();
+	}
+}
+
 document.addEventListener('keydown', function(event) {
-	if(document.getElementById("modal01").style.display == "block")
+	if(document.getElementById("slideScreen").style.display == "block")
+	{
+		switch(event.key)
+		{
+			case "ArrowRight"	: stopSlideShow(); plusDivs(-1); startSlideShow(); togglePause(); break;
+			case "ArrowLeft"	: stopSlideShow(); plusDivs(1); startSlideShow(); togglePause(); break;
+			case "Escape"		: stopSlideShow(); break;
+			case " "			: togglePause(); break;
+		}
+	}
+	else if(document.getElementById("modal01").style.display == "block")
 	{
 		switch(event.key)
 		{
@@ -153,3 +242,43 @@ document.addEventListener('keydown', function(event) {
 		}
 	}
 }, false);
+
+document.addEventListener('mousewheel', function(event) {
+	if(document.getElementById("modal01").style.display == "block")
+	{
+		/* if ((event.wheelDelta > 0) && (zoomIndex < 2.5))
+		{
+			zoomIndex = zoomIndex + 0.1;
+		}
+		
+		if ((event.wheelDelta < 0) && (zoomIndex > 0.3))
+		{
+			zoomIndex = zoomIndex - 0.1;
+		}
+		document.getElementById("screenImg").style.transform = "scale("+zoomIndex+")"; */
+		if (event.wheelDelta > 0) {plusDivs(1)}
+		if (event.wheelDelta < 0) {plusDivs(-1)}
+	}
+}, false);
+
+(function() {
+    var idlefunction = function() {
+        // when mouse is idle
+		if(document.getElementById("slideScreen").style.display == "block")
+		{
+			document.getElementById("slideShowButtons").style.display = "none";
+			document.getElementById("slideCloseButtons").style.display = "none";
+		}
+        }, idletimer,
+        idlestart = function() {idletimer = setTimeout(idlefunction,3000);},
+        idlebreak = function() {
+			clearTimeout(idletimer);
+			idlestart();
+			document.getElementById("slideShowButtons").style.display = "block";
+			document.getElementById("slideCloseButtons").style.display = "block";
+			};
+    if( window.addEventListener)
+        document.documentElement.addEventListener("mousemove",idlebreak,true);
+    else
+        document.documentElement.attachEvent("onmousemove",idlebreak,true);
+})();
