@@ -1033,8 +1033,7 @@
 		else
 		{
 			var data = img.exifdata;
-			//var cTitle = data.ImageDescription;
-			var cTitle = data.XPComment;
+			var cTitle = data.ImageDescription;
         }
         return cTitle;
     }
