@@ -14,21 +14,51 @@
 		<link href="css/w3.css" rel="stylesheet" type="text/css" media="all" />
 		<script type="text/javascript" src="js/exif.js"></script>
 		<script type="text/javascript" src="js/custom.js"></script>
+		<!--script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script-->
 	</head>
 		
 	<body onload="funcLoad()">
-		<div id="container" class="container"/>
 		
-		<div id="modal01" class="w3-modal">
-			<div id="header">
-				<span class="w3-title w3-header w3-display-topleft" id="descriptionSpan"></span>
-				<span class="w3-button w3-blue-grey w3-hover-red w3-header w3-display-topright" onclick="closeScreen()">&times;</span>
+		<!-- ********************** BEGINNING OF POLOROID ********************** -->
+		
+		<div id="container" class="container"/>
+
+		<!-- ************************* END OF POLOROID ************************* -->
+		
+		<!-- ********************* BEGINNING OF IMAGE MODAL ******************** -->
+		
+		<div id="modal01" class="w3-modal w3-animate-zoom">
+			<div id="header" class="w3-header">
+				<div class="w3-display-topright">
+					<span class="w3-button w3-blue-grey w3-hover-blue" title="Start slide show" onclick="startSlideShow()">Start Slideshow</span>
+					<span class="w3-button w3-blue-grey w3-hover-red" title="Close this screen" onclick="closeScreen()">&times;</span>
+				</div>
 			</div>
-			<div id="displayBoard" class="w3-modal-content w3-animate-zoom w3-displayBoard">
-				<button class="w3-button w3-blue-grey w3-hover-blue w3-display-left w3-zindex-4" onclick="plusDivs(1)">&#10094;</button>
-				<button class="w3-button w3-blue-grey w3-hover-blue w3-display-right w3-zindex-4" onclick="plusDivs(-1)">&#10095;</button>
-				<img id="screenImg" class="w3-screenImg"></img>
+			<div id="displayBoard" class="w3-modal-content">
+				<div id="screen" class="w3-screen">
+					<button class="w3-button w3-blue-grey w3-hover-blue w3-display-left w3-zindex-4 w3-round" onclick="plusDivs(1)">&#10094;</button>
+					<button class="w3-button w3-blue-grey w3-hover-blue w3-display-right w3-zindex-4 w3-round" onclick="plusDivs(-1)">&#10095;</button>
+					<img id="screenImg" class="w3-screenImg w3-display-left"></img>
+				</div>
+				<span class="w3-title w3-display-right" id="descriptionSpan"></span>
 			</div>
 		</div>
+		<!-- *********************** END OF IMAGE MODAL ********************** -->
+		
+		<!-- **************** BEGINNING OF SLIDE SHOW SCREEN ***************** -->
+		
+		<div id="slideScreen" class="w3-modal w3-animate-zoom w3-zindex-5 w3-slide-screen">
+			<span id="slideDesc" class="w3-display-topmiddle w3-zindex-6 w3-slide-desc"></span>
+			<span id="slideCloseButtons" class="w3-button w3-black w3-hover-red w3-display-topright" title="Close this screen" onclick="stopSlideShow()">&times;</span>
+			<div id="slideShowButtons" class="w3-display-bottommiddle w3-zindex-6">
+				<span class="w3-button w3-black w3-hover-white" id="pauseSlideShow" title="Pause slide show" onclick="pauseSlideShow()">&#x23f8;</span>
+				<span class="w3-button w3-black w3-hover-white" id="resumeSlideShow" title="Resume slide show" onclick="resumeSlideShow()">&#x23ef;</span>
+				<span class="w3-button w3-black w3-hover-white" id="stopSlideShow" title="Stop slide show" onclick="stopSlideShow()">&#x23f9;</span>
+				<span class="w3-button w3-black w3-hover-white" id="restartSlideShow" title="Restart slide show" onclick="restartSlideShow()">&#10226;</span>
+			</div>
+		</div>
+		
+		<!-- ****************** END OF SLIDE SHOW SCREEN ******************* -->
+		
 	</body>
 </html>
