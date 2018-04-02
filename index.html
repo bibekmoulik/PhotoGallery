@@ -40,7 +40,7 @@
 					<button class="w3-button w3-blue-grey w3-hover-blue w3-display-right w3-zindex-4 w3-round" onclick="plusDivs(-1)">&#10095;</button>
 					<img id="screenImg" class="w3-screenImg w3-display-left"></img>
 				</div>
-				<span class="w3-title w3-display-right" id="descriptionSpan"></span>
+				<div class="w3-title" id="descriptionSpan"></div>
 			</div>
 		</div>
 		<!-- *********************** END OF IMAGE MODAL ********************** -->
@@ -49,12 +49,14 @@
 		
 		<div id="slideScreen" class="w3-modal w3-animate-zoom w3-zindex-5 w3-slide-screen">
 			<span id="slideDesc" class="w3-display-topmiddle w3-zindex-6 w3-slide-desc"></span>
-			<span id="slideCloseButtons" class="w3-button w3-black w3-hover-red w3-display-topright" title="Close this screen" onclick="stopSlideShow()">&times;</span>
+			<span id="slideCloseButtons" class="w3-button w3-red w3-hover-white w3-display-topright" title="Close this screen" onclick="stopSlideShow()">&times;</span>
 			<div id="slideShowButtons" class="w3-display-bottommiddle w3-zindex-6">
-				<span class="w3-button w3-black w3-hover-white" id="pauseSlideShow" title="Pause slide show" onclick="pauseSlideShow()">&#x23f8;</span>
-				<span class="w3-button w3-black w3-hover-white" id="resumeSlideShow" title="Resume slide show" onclick="resumeSlideShow()">&#x23ef;</span>
-				<span class="w3-button w3-black w3-hover-white" id="stopSlideShow" title="Stop slide show" onclick="stopSlideShow()">&#x23f9;</span>
-				<span class="w3-button w3-black w3-hover-white" id="restartSlideShow" title="Restart slide show" onclick="restartSlideShow()">&#10226;</span>
+				<div class="w3-slide-show-button" id="previousImage" title="Previous Image" onclick="previousImage()"></div>
+				<div class="w3-slide-show-button" id="pauseSlideShow" title="Pause slide show" onclick="pauseSlideShow()"></div>
+				<div class="w3-slide-show-button" id="resumeSlideShow" title="Resume slide show" onclick="resumeSlideShow()"></div>
+				<div class="w3-slide-show-button" id="stopSlideShow" title="Stop slide show" onclick="stopSlideShow()"></div>
+				<div class="w3-slide-show-button" id="restartSlideShow" title="Restart slide show" onclick="restartSlideShow()"></div>
+				<div class="w3-slide-show-button" id="nextImage" title="Next Image" onclick="nextImage()"></div>
 			</div>
 		</div>
 		
