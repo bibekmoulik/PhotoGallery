@@ -1042,16 +1042,20 @@
         if (!imageHasData(img)) return "";
         var a,
             data = img.exifdata,
-            strPretty = "";
+            strPretty = "Image Details :\r\n==================\r\n";
         for (a in data) {
             if (data.hasOwnProperty(a)) {
-                if (typeof data[a] == "object") {
+                /* if (typeof data[a] == "object") {
                     if (data[a] instanceof Number) {
                         strPretty += a + " : " + data[a] + " [" + data[a].numerator + "/" + data[a].denominator + "]\r\n";
                     } else {
                         strPretty += a + " : [" + data[a].length + " values]\r\n";
                     }
                 } else {
+                    strPretty += a + " : " + data[a] + "\r\n";
+                } */
+				if (typeof data[a] != "object")
+				{
                     strPretty += a + " : " + data[a] + "\r\n";
                 }
             }
