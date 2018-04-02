@@ -5,7 +5,7 @@
      background: #ddd;
      overflow-x: hidden;
 }
-/* Colors */
+/* Beginning of Colours */
  .w3-blue-grey,.w3-hover-blue-grey:hover,.w3-blue-gray,.w3-hover-blue-gray:hover{
      color:#fff!important;
      background-color:#607d8b!important 
@@ -19,35 +19,35 @@
      background-color:#3b77d6!important 
 }
  .w3-white,.w3-hover-white:hover{
-    color:#000!important;
-    background-color:#fff!important
+     color:#000!important;
+     background-color:#fff!important 
 }
  .w3-black,.w3-hover-black:hover{
-    color:#fff!important;
-    background-color:#000!important
+     color:#fff!important;
+     background-color:#000!important 
 }
-
-/* z-index */
+/* End of Colours */
+/* Beginning of z-index */
  .w3-zindex-1{
-	z-index : 1!important;
+     z-index : 1!important;
 }
  .w3-zindex-2{
-	z-index : 2!important;
+     z-index : 2!important;
 }
  .w3-zindex-3{
-	z-index : 3!important;
+     z-index : 3!important;
 }
  .w3-zindex-4{
-	z-index : 4!important;
+     z-index : 4!important;
 }
  .w3-zindex-5{
-	z-index : 5!important;
+     z-index : 5!important;
 }
  .w3-zindex-6{
-	z-index : 6!important;
+     z-index : 6!important;
 }
-
-/* End extract */
+/* End of z-index */
+/* Beginning of General Properties */
  .w3-button{
      border:none;
      display:inline-block;
@@ -82,7 +82,7 @@
      height:100%;
      overflow:auto;
      background-color:rgba(0,0,0,0.7);
-	 transition: 2s ease;
+     transition: 1s ease;
 }
  .w3-modal-content{
      margin:auto;
@@ -118,66 +118,27 @@
      -ms-transform:translate(0%,-50%) 
 }
  .w3-display-topmiddle{
-    position:absolute;
-    left:50%;
-    top:3%;
-    transform:translate(-50%,0%);
-    -ms-transform:translate(-50%,0%)
+     position:absolute;
+     left:50%;
+     top:3%;
+     transform:translate(-50%,0%);
+     -ms-transform:translate(-50%,0%) 
 }
  .w3-display-bottommiddle{
-    position:absolute;
-    left:50%;
-    bottom:3%;
-    transform:translate(-50%,0%);
-    -ms-transform:translate(-50%,0%)
+     position:absolute;
+     left:50%;
+     bottom:3%;
+     transform:translate(-50%,0%);
+     -ms-transform:translate(-50%,0%) 
 }
  .w3-animate-zoom {
      animation:animatezoom 0.6s 
 }
-
-/* newly added */
-
- .w3-screenImg {
-     max-width:100%;
-     max-height:100%;
-     object-fit: contain;
-}
- .w3-title{
-     width: 49%;
-	 color:white;
-	 border-width:2px;
-	 border-color:white;
-	 border-style:none none none double;
-     background-color:rgba(0,0,0,0.1);
-     padding:8px 16px!important ;
-	 text-align: left;
-	 vertical-align:middle;
-	 transition: all 2s ease;
-}
- .w3-header{
-     font-size:24px!important 
-}
-
  .w3-round{
-	border-radius: 50%
+     border-radius: 50% 
 }
-
- @media (max-width:1080px){
-     .w3-header{
-         font-size:18px!important 
-    }
-}
- @media (max-width:720px){
-     .w3-header{
-         font-size:12px!important 
-    }
-}
- @media (max-width:320px){
-     .w3-header{
-         font-size:6px!important 
-    }
-}
-/* For Poloroid */
+/* End of General Properties */
+/* Beginning of Poloroid Properties */
  .container {
      position: relative;
      width: 90%;
@@ -210,6 +171,89 @@
      position: relative;
      object-fit: cover;
 }
+/* End of Poloroid Properties */
+/* Beginning of Gallery Specific Properties */
+ .w3-screenImg {
+     max-width:100%;
+     max-height:100%;
+     object-fit: contain;
+}
+ .w3-screen{
+     width: 49%;
+     height: 95%;
+     background-color:rgba(0,0,0,0);
+     position: relative;
+     object-fit: cover;
+     text-align:center;
+     vertical-align:middle;
+     transition: all 1s ease;
+}
+ .w3-title{
+     width: 49%;
+     color:white;
+     border-width:2px;
+     border-color:white;
+     border-style:none none none double;
+     background-color:rgba(0,0,0,0.1);
+     padding:8px 16px!important ;
+     text-align: left;
+     vertical-align:middle;
+     transition: all 1s ease;
+	 position:absolute;
+     top:50%;
+     right:0%;
+     transform:translate(0%,-50%);
+     -ms-transform:translate(0%,-50%) 
+}
+ .w3-header{
+     font-size:24px!important 
+}
+ .w3-slide-screen{
+     background-color: #000;
+     background-repeat: no-repeat;
+     background-size: contain;
+     background-position: center center;
+     font-size: 18px;
+}
+ .w3-slide-desc{
+     color:white;
+     background-color:rgba(0,0,0,0.5);
+     padding:8px 16px!important 
+}
+/* End of Gallery Specific Properties */
+/* Beginning of Slide show button Properties*/
+ .w3-slide-show-button{
+     height: 30px;
+     width: 30px;
+     background-color:#fff;
+     background-repeat: no-repeat;
+     background-size: contain;
+     background-position: center center;
+	 display:inline-block;
+}
+ .w3-slide-show-button:hover{
+     background-color:red;
+}
+ #pauseSlideShow{
+     background-image: url("../images/pause.png");
+}
+ #resumeSlideShow{
+     background-image: url("../images/resume.png");
+}
+ #stopSlideShow{
+     background-image: url("../images/stop.png");
+}
+ #restartSlideShow{
+     background-image: url('../images/restart.png');
+}
+ #previousImage{
+     background-image: url("../images/previous.png");
+}
+ #nextImage{
+     background-image: url('../images/next.png');
+}
+/* End of Slide show button Properties*/
+/* Beginning of Responsive Properties*/
  @media screen and (max-width: 480px) {
      .photo{
          width: 90%;
@@ -222,29 +266,30 @@
          box-shadow: inset 0px 0px 50px rgba(0, 0, 0, 0.1), 0px 0px 29px rgba(0, 0, 0, 0.2);
          z-index: 2!important;
     }
+	
+	 .w3-screen{
+		 width: 98%;
+		 height: 50%;
+		 background-color:rgba(0,0,0,0);
+		 position: relative;
+		 object-fit: cover;
+		 text-align:center;
+		 vertical-align:top;
+	}
+	 .w3-title{
+		 width: 98%;
+		 height: 40%;
+		 border-style:double none none none;
+		 background-color:rgba(0,0,0,0.1);
+		 position:absolute;
+		 text-align: center;
+		 vertical-align:top;
+		 
+		 position:absolute;
+		 left:50%;
+		 bottom:3%;
+		 transform:translate(-50%,0%);
+		 -ms-transform:translate(-50%,0%); 
+	}
 }
-
-
-.w3-slide-screen{
-	background-color: #000;
-	background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center center;
-	font-size: 18px;
-}
-.w3-slide-desc{
-	 color:white;
-     background-color:rgba(0,0,0,0.5);
-     padding:8px 16px!important 
-}
-
-.w3-screen{
-	 width: 49%;
-     height: 95%;
-     background-color:rgba(0,0,0,0);
-     position: relative;
-     object-fit: cover;
-     text-align:center;
-     vertical-align:middle;
-	 transition: all 2s ease;
-}
+/* End of Responsive Properties*/
