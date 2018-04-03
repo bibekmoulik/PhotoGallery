@@ -1042,7 +1042,8 @@
         if (!imageHasData(img)) return "";
         var a,
             data = img.exifdata,
-            strPretty = "Image Details :\r\n==================\r\n";
+            //strPretty = "Image Details :\r\n==================\r\n";
+            strPretty = "<table><tr><td colspan='2'>Image Details</td></tr>";
         for (a in data) {
             if (data.hasOwnProperty(a)) {
                 /* if (typeof data[a] == "object") {
@@ -1056,7 +1057,7 @@
                 } */
 				if (typeof data[a] != "object")
 				{
-                    strPretty += a + " : " + data[a] + "\r\n";
+                    strPretty += "<tr><td>" + a +"</td>"+ "<td>" + data[a] + "</td></tr>";
                 }
             }
         }
