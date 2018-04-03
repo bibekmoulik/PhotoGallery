@@ -14,19 +14,18 @@
 		<link href="css/w3.css" rel="stylesheet" type="text/css" media="all" />
 		<script type="text/javascript" src="js/exif.js"></script>
 		<script type="text/javascript" src="js/custom.js"></script>
-		<!--script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script-->
 	</head>
 		
 	<body onload="funcLoad()">
 		
+		<!-- ******************************************************************* -->
 		<!-- ********************** BEGINNING OF POLOROID ********************** -->
-		
+		<!-- ******************************************************************* -->
 		<div id="container" class="container"/>
 
-		<!-- ************************* END OF POLOROID ************************* -->
-		
+		<!-- ******************************************************************* -->
 		<!-- ********************* BEGINNING OF IMAGE MODAL ******************** -->
-		
+		<!-- ******************************************************************* -->
 		<div id="modal01" class="w3-modal w3-animate-zoom">
 			<div id="header" class="w3-header">
 				<div class="w3-display-topright">
@@ -35,18 +34,18 @@
 				</div>
 			</div>
 			<div id="displayBoard" class="w3-modal-content">
-				<div id="screen" class="w3-screen">
-					<button class="w3-button w3-blue-grey w3-hover-blue w3-display-left w3-zindex-4 w3-round" onclick="plusDivs(1)">&#10094;</button>
-					<button class="w3-button w3-blue-grey w3-hover-blue w3-display-right w3-zindex-4 w3-round" onclick="plusDivs(-1)">&#10095;</button>
+				<div id="screen" class="w3-screen" draggable="true">
+					<div id="previousImageButton" class="w3-slide-show-button w3-display-left w3-zindex-4 w3-round" onclick="plusDivs(1)"></div>
+					<div id="nextImageButton" class="w3-slide-show-button w3-display-right w3-zindex-4 w3-round" onclick="plusDivs(-1)"></div>
 					<img id="screenImg" class="w3-screenImg w3-display-left"></img>
 				</div>
 				<div class="w3-title" id="descriptionSpan"></div>
 			</div>
 		</div>
-		<!-- *********************** END OF IMAGE MODAL ********************** -->
 		
-		<!-- **************** BEGINNING OF SLIDE SHOW SCREEN ***************** -->
-		
+		<!-- ******************************************************************* -->
+		<!-- ***************** BEGINNING OF SLIDE SHOW SCREEN ****************** -->
+		<!-- ******************************************************************* -->
 		<div id="slideScreen" class="w3-modal w3-animate-zoom w3-zindex-5 w3-slide-screen">
 			<span id="slideDesc" class="w3-display-topmiddle w3-zindex-6 w3-slide-desc"></span>
 			<span id="slideCloseButtons" class="w3-button w3-red w3-hover-white w3-display-topright" title="Close this screen" onclick="stopSlideShow()">&times;</span>
@@ -60,7 +59,8 @@
 			</div>
 		</div>
 		
-		<!-- ****************** END OF SLIDE SHOW SCREEN ******************* -->
-		
+		<!-- ******************************************************************* -->
+		<!-- ******************** END OF SLIDE SHOW SCREEN ********************* -->
+		<!-- ******************************************************************* -->
 	</body>
 </html>
