@@ -4,6 +4,11 @@
  body {
      background: #ddd;
      overflow-x: hidden;
+	 text-align:center;
+}
+ table, th, td {
+    border: 1px solid white;
+	border-collapse: collapse;
 }
 /* Beginning of Colours */
  .w3-blue-grey,.w3-hover-blue-grey:hover,.w3-blue-gray,.w3-hover-blue-gray:hover{
@@ -234,6 +239,16 @@
  .w3-slide-show-button:hover{
      background-color:red;
 }
+ #previousImageButton{
+     background-image: url("https://bibekmoulik.github.io/gallery/images/previous.png");
+}
+ #nextImageButton{
+     background-image: url("https://bibekmoulik.github.io/gallery/images/next.png");
+}
+
+ #previousImage{
+     background-image: url("https://bibekmoulik.github.io/gallery/images/previous.png");
+}
  #pauseSlideShow{
      background-image: url("https://bibekmoulik.github.io/gallery/images/pause.png");
 }
@@ -245,9 +260,6 @@
 }
  #restartSlideShow{
      background-image: url("https://bibekmoulik.github.io/gallery/images/restart.png");
-}
- #previousImage{
-     background-image: url("https://bibekmoulik.github.io/gallery/images/previous.png");
 }
  #nextImage{
      background-image: url("https://bibekmoulik.github.io/gallery/images/next.png");
@@ -290,6 +302,9 @@
 		 bottom:3%;
 		 transform:translate(-50%,0%);
 		 -ms-transform:translate(-50%,0%); 
+	}
+	* {
+	font-size:12px!important;
 	}
 }
 /* End of Responsive Properties*/
