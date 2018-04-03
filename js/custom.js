@@ -160,15 +160,12 @@ function previousImage()
 
 function startSlideShow()
 {
-	document.getElementById("pauseSlideShow").style.pointerEvents = "auto";
-	document.getElementById("resumeSlideShow").style.pointerEvents = "none";
-	document.getElementById("stopSlideShow").style.pointerEvents = "auto";
-	document.getElementById("restartSlideShow").style.pointerEvents = "auto";
+	document.getElementById("modal01").style.display = "none";
 	
-	document.getElementById("pauseSlideShow").style.opacity = "1.0";
-	document.getElementById("resumeSlideShow").style.opacity = "0.3";
-	document.getElementById("stopSlideShow").style.opacity = "1.0";
-	document.getElementById("restartSlideShow").style.opacity = "1.0";
+	document.getElementById("pauseSlideShow").style.display = "inline-block";
+	document.getElementById("resumeSlideShow").style.display = "none";
+	document.getElementById("stopSlideShow").style.display = "inline-block";
+	document.getElementById("restartSlideShow").style.display = "inline-block";
 	
 	var screenImg = document.getElementById("screenImg");
 	document.getElementById("slideDesc").style.display = "none";
@@ -192,32 +189,24 @@ function startSlideShow()
 
 function stopSlideShow()
 {
-	document.getElementById("pauseSlideShow").style.pointerEvents = "auto";
-	document.getElementById("resumeSlideShow").style.pointerEvents = "auto";
-	document.getElementById("stopSlideShow").style.pointerEvents = "auto";
-	document.getElementById("restartSlideShow").style.pointerEvents = "auto";
-	
-	document.getElementById("pauseSlideShow").style.opacity = "1.0";
-	document.getElementById("resumeSlideShow").style.opacity = "1.0";
-	document.getElementById("stopSlideShow").style.opacity = "1.0";
-	document.getElementById("restartSlideShow").style.opacity = "1.0";
+	document.getElementById("pauseSlideShow").style.display = "inline-block";
+	document.getElementById("resumeSlideShow").style.display = "inline-block";
+	document.getElementById("stopSlideShow").style.display = "inline-block";
+	document.getElementById("restartSlideShow").style.display = "inline-block";
 	
 	clearTimeout(sliderTimer);
 	plusDivs(1);
 	document.getElementById("slideScreen").style.display = "none";
+	
+	document.getElementById("modal01").style.display = "block";
 }
 
 function pauseSlideShow()
 {
-	document.getElementById("pauseSlideShow").style.pointerEvents = "none";
-	document.getElementById("resumeSlideShow").style.pointerEvents = "auto";
-	document.getElementById("stopSlideShow").style.pointerEvents = "auto";
-	document.getElementById("restartSlideShow").style.pointerEvents = "auto";
-	
-	document.getElementById("pauseSlideShow").style.opacity = "0.3";
-	document.getElementById("resumeSlideShow").style.opacity = "1.0";
-	document.getElementById("stopSlideShow").style.opacity = "1.0";
-	document.getElementById("restartSlideShow").style.opacity = "1.0";
+	document.getElementById("pauseSlideShow").style.display = "none";
+	document.getElementById("resumeSlideShow").style.display = "inline-block";
+	document.getElementById("stopSlideShow").style.display = "inline-block";
+	document.getElementById("restartSlideShow").style.display = "inline-block";
 	
 	clearTimeout(sliderTimer);
 }
@@ -244,7 +233,7 @@ function nextImage()
 
 function togglePause()
 {
-	if (document.getElementById("resumeSlideShow").style.pointerEvents == "none")
+	if (document.getElementById("resumeSlideShow").style.display == "none")
 	{
 		pauseSlideShow();
 	}
@@ -262,8 +251,8 @@ document.addEventListener('keydown', function(event) {
 	{
 		switch(event.key)
 		{
-			case "ArrowRight"	: stopSlideShow(); plusDivs(-1); startSlideShow(); pauseSlideShow(); break;
-			case "ArrowLeft"	: stopSlideShow(); plusDivs(1); startSlideShow(); pauseSlideShow(); break;
+			case "ArrowRight"	: nextImage(); break;
+			case "ArrowLeft"	: previousImage(); break;
 			case "Escape"		: stopSlideShow(); break;
 			case " "			: togglePause(); break;
 		}
@@ -282,16 +271,10 @@ document.addEventListener('keydown', function(event) {
 document.addEventListener('mousewheel', function(event) {
 	if(document.getElementById("modal01").style.display == "block")
 	{
-		/* if ((event.wheelDelta > 0) && (zoomIndex < 2.5))
-		{
-			zoomIndex = zoomIndex + 0.1;
-		}
-		
-		if ((event.wheelDelta < 0) && (zoomIndex > 0.3))
-		{
-			zoomIndex = zoomIndex - 0.1;
-		}
+		/* if ((event.wheelDelta > 0) && (zoomIndex < 2.5)) {zoomIndex = zoomIndex + 0.1;}		
+		if ((event.wheelDelta < 0) && (zoomIndex > 0.3)) {zoomIndex = zoomIndex - 0.1;}
 		document.getElementById("screenImg").style.transform = "scale("+zoomIndex+")"; */
+		
 		if (event.wheelDelta > 0) {plusDivs(1)}
 		if (event.wheelDelta < 0) {plusDivs(-1)}
 	}
@@ -313,8 +296,31 @@ document.addEventListener('mousewheel', function(event) {
 			document.getElementById("slideShowButtons").style.display = "block";
 			document.getElementById("slideCloseButtons").style.display = "block";
 			};
-    if( window.addEventListener)
+    if (window.addEventListener)
         document.documentElement.addEventListener("mousemove",idlebreak,true);
     else
         document.documentElement.attachEvent("onmousemove",idlebreak,true);
 })();
+
+
+var SourceX, TargetX;
+
+/* Events fired on the drag target */
+document.ondragstart = function(event) {
+	if (event.target.id == "screenImg"){
+		SourceX = event.screenX;
+	}
+};
+
+/* Events fired on the drop target */
+document.ondragover = function(event) {
+	event.preventDefault();
+};
+
+document.ondrop = function(event) {
+	if (SourceX){
+    	TargetX = event.screenX;
+        if (SourceX > TargetX) {plusDivs(1);}
+        if (SourceX < TargetX) {plusDivs(-1);}
+	}
+};
