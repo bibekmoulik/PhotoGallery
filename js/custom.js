@@ -111,7 +111,7 @@ function setImage(sourcePath)
 		}
 	}
 	
-	document.getElementById("descriptionSpan").innerText = "";
+	document.getElementById("descriptionSpan").innerHTML = "";
 	screen.appendChild(image);
 	
 	setImageDesc(image);
@@ -130,7 +130,7 @@ function setImageDesc(image)
 		description = EXIF.pretty(image);
 		if (description && description != "")
 		{
-			document.getElementById("descriptionSpan").innerText = description;
+			document.getElementById("descriptionSpan").innerHTML = description;
 			document.getElementById("descriptionSpan").style.display = "block";
 		}
 	});
