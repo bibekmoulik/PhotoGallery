@@ -164,6 +164,7 @@
      padding: 10px 10px 10px 10px;
      transition: all 500ms ease;
      transform: translateZ(0);
+     cursor: zoom-in;
 }
  .photo:hover {
      transform: rotateZ(0deg) scale(1.5) !important;
