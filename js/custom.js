@@ -1,4 +1,4 @@
-var photoIndex = 24;
+var photoIndex = 22;
 var initPhotoIndex = photoIndex;
 var imagePath = "https://bibekmoulik.github.io/gallery/images/";
 var zoomIndex = 1.0;
