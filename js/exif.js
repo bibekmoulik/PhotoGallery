@@ -1043,7 +1043,8 @@
         var a,
             data = img.exifdata,
             //strPretty = "Image Details :\r\n==================\r\n";
-            strPretty = "<table><tr><td colspan='2'>Image Details</td></tr>";
+            strPretty = "<div class='w3-desc-div'><h3><u>Image Details:</u></h3><br/><table class='w3-desc-table'>";
+
         for (a in data) {
             if (data.hasOwnProperty(a)) {
                 /* if (typeof data[a] == "object") {
@@ -1057,10 +1058,11 @@
                 } */
 				if (typeof data[a] != "object")
 				{
-                    strPretty += "<tr><td>" + a +"</td>"+ "<td>" + data[a] + "</td></tr>";
+                    strPretty += "<tr><td>" + a + "</td>" + "<td>:</td>" + "<td>" + data[a] + "</td></tr>";
                 }
             }
         }
+		strPretty += "</table></div>"
         return strPretty;
     }
 
