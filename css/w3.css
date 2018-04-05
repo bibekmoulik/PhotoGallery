@@ -6,10 +6,23 @@
      overflow-x: hidden;
 	 text-align:center;
 }
- table, th, td {
-    border: 1px solid white;
+/*  table, th, td {
+    border: 1px solid black;
 	border-collapse: collapse;
+} */
+
+/* Beginning of Scroll-Bar */
+::-webkit-scrollbar {
+    width: 2px;
 }
+::-webkit-scrollbar-track {
+    background: black;
+}
+::-webkit-scrollbar-thumb {
+    background: white; 
+}
+/* Beginning of Scroll-Bar */
+
 /* Beginning of Colours */
  .w3-blue-grey,.w3-hover-blue-grey:hover,.w3-blue-gray,.w3-hover-blue-gray:hover{
      color:#fff!important;
@@ -164,7 +177,7 @@
      padding: 10px 10px 10px 10px;
      transition: all 500ms ease;
      transform: translateZ(0);
-     cursor: zoom-in;
+	 cursor: zoom-in;
 }
  .photo:hover {
      transform: rotateZ(0deg) scale(1.5) !important;
@@ -194,11 +207,13 @@
      vertical-align:middle;
      transition: all 1s ease;
 }
- .w3-title{
+ .w3-description-span{
+
      width: 49%;
+	 height: 85%;
      color:white;
      border-width:2px;
-     border-color:white;
+     border-color:black;
      border-style:none none none double;
      background-color:rgba(0,0,0,0.1);
      padding:8px 16px!important ;
@@ -209,7 +224,8 @@
      top:50%;
      right:0%;
      transform:translate(0%,-50%);
-     -ms-transform:translate(0%,-50%) 
+     -ms-transform:translate(0%,-50%) ;
+	 overflow-y:auto;
 }
  .w3-header{
      font-size:24px!important 
@@ -225,6 +241,10 @@
      color:white;
      background-color:rgba(0,0,0,0.5);
      padding:8px 16px!important 
+}
+ .w3-desc-table{
+	text-align:left;
+	vertical-align:middle;
 }
 /* End of Gallery Specific Properties */
 /* Beginning of Slide show button Properties*/
@@ -289,7 +309,8 @@
 		 text-align:center;
 		 vertical-align:top;
 	}
-	 .w3-title{
+	 .w3-description-span{
+
 		 width: 98%;
 		 height: 40%;
 		 border-style:double none none none;
@@ -303,6 +324,9 @@
 		 bottom:3%;
 		 transform:translate(-50%,0%);
 		 -ms-transform:translate(-50%,0%); 
+	}
+	 .w3-desc-table{
+		margin:auto;
 	}
 	* {
 	font-size:12px!important;
