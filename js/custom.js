@@ -287,6 +287,7 @@ document.addEventListener('keydown', function(event) {
 		{
 			document.getElementById("slideShowButtons").style.display = "none";
 			document.getElementById("slideCloseButtons").style.display = "none";
+			document.getElementById("slideScreen").style.cursor = "none";
 		}
         }, idletimer,
         idlestart = function() {idletimer = setTimeout(idlefunction,3000);},
@@ -295,6 +296,7 @@ document.addEventListener('keydown', function(event) {
 			idlestart();
 			document.getElementById("slideShowButtons").style.display = "block";
 			document.getElementById("slideCloseButtons").style.display = "block";
+			document.getElementById("slideScreen").style.cursor = "auto";
 			};
     if (window.addEventListener)
         document.documentElement.addEventListener("mousemove",idlebreak,true);
