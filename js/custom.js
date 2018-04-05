@@ -268,17 +268,17 @@ document.addEventListener('keydown', function(event) {
 	}
 }, false);
 
-document.addEventListener('mousewheel', function(event) {
+/* document.addEventListener('mousewheel', function(event) {
 	if(document.getElementById("modal01").style.display == "block")
 	{
-		/* if ((event.wheelDelta > 0) && (zoomIndex < 2.5)) {zoomIndex = zoomIndex + 0.1;}		
+		 if ((event.wheelDelta > 0) && (zoomIndex < 2.5)) {zoomIndex = zoomIndex + 0.1;}		
 		if ((event.wheelDelta < 0) && (zoomIndex > 0.3)) {zoomIndex = zoomIndex - 0.1;}
-		document.getElementById("screenImg").style.transform = "scale("+zoomIndex+")"; */
+		document.getElementById("screenImg").style.transform = "scale("+zoomIndex+")"; 
 		
 		if (event.wheelDelta > 0) {plusDivs(1)}
 		if (event.wheelDelta < 0) {plusDivs(-1)}
 	}
-}, false);
+}, false); */
 
 (function() {
     var idlefunction = function() {
